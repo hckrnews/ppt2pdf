@@ -1,27 +1,21 @@
-import File from './file.js';
-import {
-    folderExists,
-    getFileName
-} from './fs.js';
-import {
-    execSync
-} from 'child_process';
 import path from 'path';
 import {
     platform
 } from 'process';
+import {
+    Converter,
+    getFileName
+} from '@hckrnews/converter';
 
 /**
  * Converter
  */
-class Converter {
+class Ppt2PdfConverter extends Converter {
     /**
      * Define the files array
      */
     constructor() {
-        this.files = [];
-        this.output = null;
-        this.customConverter = null;
+        super();
     }
 
     /**
@@ -45,23 +39,6 @@ class Converter {
         }
 
         return converters.default;
-    }
-
-    /**
-     * Set the custom converter.
-     *
-     * @param {string} converter
-     */
-    setConverter(converter) {
-        if (!converter) {
-            return;
-        }
-
-        if (converter.constructor !== String) {
-            throw new Error('Converter should be a string');
-        }
-
-        this.customConverter = converter;
     }
 
     /**
@@ -94,46 +71,12 @@ class Converter {
     }
 
     /**
-     * Set the files
-     *
-     * @param {array} files
-     */
-    setFiles(files) {
-        if (!files || files.constructor !== Array) {
-            throw new Error('Files should be a array');
-        }
-
-        this.files = files.map((file) => File.create({
-            filePath: file
-        }));
-    }
-
-    /**
-     * Set the output path
-     *
-     * @param {string} output
-     */
-    setOutput(output) {
-        if (!output || output.constructor !== String) {
-            throw new Error('Output should be a string');
-        }
-
-        if (!folderExists(output)) {
-            throw new Error('Output folder doesnt exists');
-        }
-
-        this.output = output;
-    }
-
-    /**
      * Get the exec path
-     *
-     * @param {string} filePath
      *
      * @return {string}
      */
-    getExecPath(filePath) {
-        return this.converter + ' \'' + this.output + '\' \'' + filePath + '\'';
+    get execPath() {
+        return this.converter + ' "' + this.output + '" "' + this.oldFile.path + '"';
     }
 
     /**
@@ -148,41 +91,31 @@ class Converter {
     }
 
     /**
-     * Convert ppt files to pdf files.
-     *
-     * @return {array}
+     * Get the pdf filename.
      */
-    convertPptToPdf() {
-        return this.files.map((file) => {
-            const fileName = getFileName(file.path);
-            const output = execSync(this.getExecPath(file.path));
+    get pdf() {
+        const fileName = getFileName(this.oldFile.path);
 
-            return {
-                file,
-                fileName,
-                output,
-                pdf: this.getPdfFile(fileName)
-            };
-        });
+        return this.getPdfFile(fileName);
     }
 
     /**
      * Create the converter
      *
-     * @param {array} files
+     * @param {string} file
      * @param {string} output
      * @param {string} customConverter
      *
      * @return {object}
      */
     static create({
-        files,
+        file,
         output,
         customConverter
     }) {
-        const converter = new Converter();
+        const converter = new Ppt2PdfConverter();
 
-        converter.setFiles(files);
+        converter.setFile(file);
         converter.setOutput(output);
         converter.setConverter(customConverter);
 
@@ -190,4 +123,4 @@ class Converter {
     }
 }
 
-export default Converter;
+export default Ppt2PdfConverter;
