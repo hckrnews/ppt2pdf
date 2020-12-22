@@ -12,13 +12,6 @@ import {
  */
 class Ppt2PdfConverter extends Converter {
     /**
-     * Define the files array
-     */
-    constructor() {
-        super();
-    }
-
-    /**
      * Get the converter.
      *
      * @return {string}
