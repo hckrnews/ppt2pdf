@@ -15,7 +15,7 @@ The package requires the following software to be installed:
 
 Debian/Ubuntu:
 
-    sudo apt install libreoffice ghostscript
+    sudo apt install libreoffice
 
 ## Example usage
 
