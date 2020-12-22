@@ -1,0 +1,76 @@
+{
+    "name": "@hckrnews/ppt2pdf",
+    "version": "0.1.0",
+    "description": "Convert ppt to pdf",
+    "files": [
+        "src/converter.js",
+        "dist/converter.js",
+        "dist/converter.js.map",
+        "dist/converter.module.js",
+        "dist/converter.module.js.map",
+        "dist/converter.modern.js",
+        "dist/converter.modern.js.map",
+        "dist/converter.umd.js",
+        "dist/converter.umd.js.map"
+    ],
+    "source": "src/converter.js",
+    "main": "dist/converter.js",
+    "module": "dist/converter.module.js",
+    "esmodule": "dist/converter.modern.js",
+    "unpkg": "dist/converter.umd.js",
+    "umd:main": "dist/oconverter.umd.js",
+    "exports": {
+        ".": {
+            "require": "./dist/converter.js",
+            "default": "./dist/converter.module.js"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hckrnews/ppt2pdf.git"
+    },
+    "keywords": [
+        "javascript",
+        "ppt",
+        "pptx",
+        "powerpoint",
+        "pdf"
+    ],
+    "author": {
+        "name": "Pieter Wigboldus",
+        "url": "https://hckr.news/"
+    },
+    "bugs": {
+        "url": "https://github.com/hckrnews/ppt2pdf/issues"
+    },
+    "license": "GPL-3.0",
+    "homepage": "https://github.com/hckrnews/ppt2pdf#readme",
+    "scripts": {
+        "build": "microbundle --target node",
+        "dev": "microbundle --target node watch",
+        "lint": "eslint src/*.js --config .eslintrc",
+        "lint:fix": "eslint src/*.js --config .eslintrc --fix",
+        "test": "jest",
+        "test:watch": "jest src --watch",
+        "coveralls": "jest && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
+        "babel-eslint": "^10.1.0",
+        "babel-jest": "^26.6.3",
+        "codecov": "^3.8.1",
+        "coveralls": "^3.1.0",
+        "eslint": "^7.15.0",
+        "esm": "^3.2.25",
+        "jest": "^26.6.3",
+        "microbundle": "^0.12.4"
+    },
+    "dependencies": {
+        "path": "^0.12.7"
+    },
+    "type": "module",
+    "engines": {
+        "node": ">= 14"
+    }
+}
