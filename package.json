@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/ppt2pdf",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "Convert ppt to pdf",
     "files": [
         "src/converter.js",
@@ -18,7 +18,7 @@
     "module": "dist/converter.module.js",
     "esmodule": "dist/converter.modern.js",
     "unpkg": "dist/converter.umd.js",
-    "umd:main": "dist/oconverter.umd.js",
+    "umd:main": "dist/converter.umd.js",
     "exports": {
         ".": {
             "require": "./dist/converter.js",
@@ -61,13 +61,13 @@
         "babel-jest": "^26.6.3",
         "codecov": "^3.8.1",
         "coveralls": "^3.1.0",
-        "eslint": "^7.15.0",
+        "eslint": "^7.17.0",
         "esm": "^3.2.25",
         "jest": "^26.6.3",
         "microbundle": "^0.12.4"
     },
     "dependencies": {
-        "@hckrnews/converter": "^0.3.0",
+        "@hckrnews/converter": "^0.4.0",
         "path": "^0.12.7"
     },
     "type": "module",
