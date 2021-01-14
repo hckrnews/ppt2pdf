@@ -18,7 +18,7 @@
     "module": "dist/converter.module.js",
     "esmodule": "dist/converter.modern.js",
     "unpkg": "dist/converter.umd.js",
-    "umd:main": "dist/oconverter.umd.js",
+    "umd:main": "dist/converter.umd.js",
     "exports": {
         ".": {
             "require": "./dist/converter.js",
