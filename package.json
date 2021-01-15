@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/ppt2pdf",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "description": "Convert ppt to pdf",
     "files": [
         "src/converter.js",
@@ -68,7 +68,7 @@
         "microbundle": "^0.12.4"
     },
     "dependencies": {
-        "@hckrnews/converter": "^0.4.0",
+        "@hckrnews/converter": "^0.4.1",
         "path": "^0.12.7"
     },
     "engines": {
