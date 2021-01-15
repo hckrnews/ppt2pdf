@@ -1,28 +1,29 @@
 {
     "name": "@hckrnews/ppt2pdf",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "Convert ppt to pdf",
     "files": [
         "src/converter.js",
         "dist/converter.js",
         "dist/converter.js.map",
-        "dist/converter.module.js",
-        "dist/converter.module.js.map",
-        "dist/converter.modern.js",
-        "dist/converter.modern.js.map",
-        "dist/converter.umd.js",
-        "dist/converter.umd.js.map"
+        "dist/converter.module.mjs",
+        "dist/converter.module.mjs.map",
+        "dist/converter.modern.mjs",
+        "dist/converter.modern.mjs.map",
+        "dist/converter.umd.cjs",
+        "dist/converter.umd.cjs.map"
     ],
     "source": "src/converter.js",
     "main": "dist/converter.js",
-    "module": "dist/converter.module.js",
-    "esmodule": "dist/converter.modern.js",
-    "unpkg": "dist/converter.umd.js",
-    "umd:main": "dist/converter.umd.js",
+    "module": "dist/converter.module.mjs",
+    "esmodule": "dist/converter.modern.mjs",
+    "unpkg": "dist/converter.umd.cjs",
+    "umd:main": "dist/converter.umd.cjs",
     "exports": {
         ".": {
-            "require": "./dist/converter.js",
-            "default": "./dist/converter.module.js"
+            "require": "./dist/converter.umd.cjs",
+            "import": "./dist/converter.module.mjs",
+            "default": "./dist/converter.js"
         }
     },
     "repository": {
@@ -70,7 +71,6 @@
         "@hckrnews/converter": "^0.4.0",
         "path": "^0.12.7"
     },
-    "type": "module",
     "engines": {
         "node": ">= 14"
     }
