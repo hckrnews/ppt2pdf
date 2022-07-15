@@ -1,31 +1,12 @@
 {
     "name": "@hckrnews/ppt2pdf",
-    "version": "0.2.5",
+    "version": "0.3.0",
     "description": "Convert ppt to pdf",
     "files": [
-        "src/converter.js",
-        "dist/converter.js",
-        "dist/converter.js.map",
-        "dist/converter.module.mjs",
-        "dist/converter.module.mjs.map",
-        "dist/converter.modern.mjs",
-        "dist/converter.modern.mjs.map",
-        "dist/converter.umd.cjs",
-        "dist/converter.umd.cjs.map"
+        "src/converter.js"
     ],
     "source": "src/converter.js",
-    "main": "dist/converter.js",
-    "module": "dist/converter.module.mjs",
-    "esmodule": "dist/converter.modern.mjs",
-    "unpkg": "dist/converter.umd.cjs",
-    "umd:main": "dist/converter.umd.cjs",
-    "exports": {
-        ".": {
-            "require": "./dist/converter.umd.cjs",
-            "import": "./dist/converter.module.mjs",
-            "default": "./dist/converter.js"
-        }
-    },
+    "main": "src/converter.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/hckrnews/ppt2pdf.git"
@@ -47,31 +28,36 @@
     "license": "MIT",
     "homepage": "https://github.com/hckrnews/ppt2pdf#readme",
     "scripts": {
-        "build": "microbundle --target node",
-        "dev": "microbundle --target node watch",
         "lint": "eslint src/*.js --config .eslintrc",
+        "lint:report": "eslint src/*.js --config .eslintrc -f json -o report.json",
         "lint:fix": "eslint src/*.js --config .eslintrc --fix",
-        "test": "jest",
-        "test:watch": "jest src --watch",
-        "coveralls": "jest && codecov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+        "test": "c8 node --test",
+        "cpd": "node_modules/jscpd/bin/jscpd src",
+        "vulnerabilities": "npm audit --production"
     },
     "devDependencies": {
-        "@babel/core": "^7.12.10",
-        "@babel/preset-env": "^7.12.11",
-        "babel-eslint": "^10.1.0",
-        "babel-jest": "^26.6.3",
-        "codecov": "^3.8.1",
-        "coveralls": "^3.1.0",
-        "eslint": "^7.17.0",
+        "@hckrnews/eslint-config": "^3.0.0",
+        "c8": "^7.11.3",
+        "eslint": "^8.15.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-html": "^6.1.2",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-prettier": "^4.0.0",
         "esm": "^3.2.25",
-        "jest": "^26.6.3",
-        "microbundle": "^0.12.4"
+        "jscpd": "^3.4.5"
     },
     "dependencies": {
-        "@hckrnews/converter": "^0.4.1",
+        "@hckrnews/converter": "^0.5.0",
         "path": "^0.12.7"
     },
     "engines": {
         "node": ">= 14"
+    },
+    "type": "module",
+    "funding": {
+        "type": "github",
+        "url": "https://github.com/sponsors/w3nl"
     }
 }

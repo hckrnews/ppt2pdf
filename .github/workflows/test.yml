@@ -1,4 +1,4 @@
-name: Node CI
+name: Node Test
 
 on: [push]
 
@@ -9,25 +9,20 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     - name: Install LibreOffice
       run: sudo apt install libreoffice
-    - name: npm install, build, and test
+    - name: npm test
       run: |
         npm ci
-        npm run lint
         npm test
-        npm run build --if-present
       env:
         CI: true
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
