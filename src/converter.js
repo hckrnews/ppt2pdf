@@ -1,11 +1,6 @@
 import path from 'path';
-import {
-    platform
-} from 'process';
-import {
-    Converter,
-    getFileName
-} from '@hckrnews/converter';
+import { platform } from 'process';
+import { Converter, getFileName } from '@hckrnews/converter';
 
 /**
  * Converter
@@ -18,9 +13,9 @@ class Ppt2PdfConverter extends Converter {
      */
     get converter() {
         const converters = {
-            darwin:  this.converterForMac,
-            win32:   this.converterForWindows,
-            default: this.converterForLinux
+            darwin: this.converterForMac,
+            win32: this.converterForWindows,
+            default: this.converterForLinux,
         };
 
         if (this.customConverter) {
@@ -49,9 +44,10 @@ class Ppt2PdfConverter extends Converter {
      * @return {string}
      */
     get converterForMac() {
-        const sOfficeMac = '/Applications/LibreOffice.app/Contents/MacOS/soffice';
+        const sOfficeMac =
+            '/Applications/LibreOffice.app/Contents/MacOS/soffice';
 
-        return sOfficeMac + ' --headless --convert-to pdf --outdir';
+        return `${sOfficeMac} --headless --convert-to pdf --outdir`;
     }
 
     /**
@@ -69,7 +65,7 @@ class Ppt2PdfConverter extends Converter {
      * @return {string}
      */
     get execPath() {
-        return this.converter + ' "' + this.output + '" "' + this.oldFile.path + '"';
+        return `${this.converter} "${this.output}" "${this.oldFile.path}"`;
     }
 
     /**
@@ -80,7 +76,7 @@ class Ppt2PdfConverter extends Converter {
      * @return {string}
      */
     getPdfFile(fileName) {
-        return this.output + path.parse(fileName).name + '.pdf';
+        return `${this.output + path.parse(fileName).name}.pdf`;
     }
 
     /**
@@ -101,11 +97,7 @@ class Ppt2PdfConverter extends Converter {
      *
      * @return {object}
      */
-    static create({
-        file,
-        output,
-        customConverter
-    }) {
+    static create({ file, output, customConverter }) {
         const converter = new Ppt2PdfConverter();
 
         converter.setFile(file);
