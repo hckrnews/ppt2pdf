@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/ppt2pdf",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Convert ppt to pdf",
     "files": [
         "src/converter.js"
@@ -37,23 +37,22 @@
     },
     "devDependencies": {
         "@hckrnews/eslint-config": "^3.0.0",
-        "c8": "^7.11.3",
+        "c8": "^8.0.0",
         "eslint": "^8.15.0",
         "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-html": "^6.1.2",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-html": "^7.0.0",
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-jsx-a11y": "^6.5.1",
-        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
         "esm": "^3.2.25",
         "jscpd": "^3.4.5"
     },
     "dependencies": {
-        "@hckrnews/converter": "^0.5.0",
-        "path": "^0.12.7"
+        "@hckrnews/converter": "^0.5.0"
     },
     "engines": {
-        "node": ">= 14"
+        "node": ">= 18"
     },
     "type": "module",
     "funding": {

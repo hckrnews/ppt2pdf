@@ -1,5 +1,5 @@
-import path from 'path';
-import { platform } from 'process';
+import path from 'node:path';
+import { platform } from 'node:process';
 import { Converter, getFileName } from '@hckrnews/converter';
 
 /**
