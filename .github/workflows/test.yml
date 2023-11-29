@@ -19,7 +19,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install LibreOffice
-      run: sudo apt install libreoffice
+      run: sudo apt update && sudo apt install libreoffice
     - name: npm test
       run: |
         npm ci
