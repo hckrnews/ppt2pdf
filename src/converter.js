@@ -3,13 +3,19 @@ import { platform } from 'node:process';
 import { Converter, getFileName } from '@hckrnews/converter';
 
 /**
+ * @typedef {import('@hckrnews/converter').Converter} ConverterObject
+ * @typedef {object} Ppt2PdfConverterSpecificObject
+ * @property {string} pdf
+ * @property {string} converterForLinux
+ * @typedef {ConverterObject & Ppt2PdfConverterSpecificObject} Ppt2PdfConverterObject
+ */
+/**
  * Converter
  */
 class Ppt2PdfConverter extends Converter {
     /**
      * Get the converter.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get converter() {
         const converters = {
@@ -31,8 +37,7 @@ class Ppt2PdfConverter extends Converter {
 
     /**
      * Get the converter for Linux.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get converterForLinux() {
         return 'libreoffice --headless --convert-to pdf --outdir';
@@ -40,8 +45,7 @@ class Ppt2PdfConverter extends Converter {
 
     /**
      * Get the converter for Mac.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get converterForMac() {
         const sOfficeMac =
@@ -52,8 +56,7 @@ class Ppt2PdfConverter extends Converter {
 
     /**
      * Get the converter for Mac.
-     *
-     * @return {strring}
+     * @returns {string}
      */
     get converterForWindows() {
         return 'soffice.exe --headless --convert-to pdf:writer_pdf_Export --outdir';
@@ -61,8 +64,7 @@ class Ppt2PdfConverter extends Converter {
 
     /**
      * Get the exec path
-     *
-     * @return {string}
+     * @returns {string}
      */
     get execPath() {
         return `${this.converter} "${this.output}" "${this.oldFile.path}"`;
@@ -70,10 +72,8 @@ class Ppt2PdfConverter extends Converter {
 
     /**
      * Get the pdf file path.
-     *
      * @param {string} fileName
-     *
-     * @return {string}
+     * @returns {string}
      */
     getPdfFile(fileName) {
         return `${this.output + path.parse(fileName).name}.pdf`;
@@ -81,6 +81,7 @@ class Ppt2PdfConverter extends Converter {
 
     /**
      * Get the pdf filename.
+     * @returns {string}
      */
     get pdf() {
         const fileName = getFileName(this.oldFile.path);
@@ -90,16 +91,17 @@ class Ppt2PdfConverter extends Converter {
 
     /**
      * Create the converter
-     *
-     * @param {string} file
-     * @param {string} output
-     * @param {string} customConverter
-     *
-     * @return {object}
+     * @param {object} params
+     * @param {string} params.file
+     * @param {string} params.output
+     * @param {string=} params.customConverter
+     * @param {boolean=} params.sync
+     * @returns {Ppt2PdfConverterObject}
      */
-    static create({ file, output, customConverter }) {
+    static create({ file, output, customConverter, sync = true }) {
         const converter = new Ppt2PdfConverter();
 
+        converter.setSync(sync);
         converter.setFile(file);
         converter.setOutput(output);
         converter.setConverter(customConverter);
