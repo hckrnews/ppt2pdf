@@ -6,64 +6,43 @@ import Converter from '../converter.js';
 test('PPT2PDF converter test', async (t) => {
     await t.test('It should generate the converter', () => {
         const converter = Converter.create({
-            file: 'test/OPW 733 Tienduizend redenen.ppt',
+            file: 'test/example.ppt',
             output: 'output/',
         });
 
-        assert.strictEqual(
-            converter.oldFile.path,
-            'test/OPW 733 Tienduizend redenen.ppt'
-        );
+        assert.strictEqual(converter.oldFile.path, 'test/example.ppt');
     });
 
-    await t.test('It should generate the converter', () => {
+    await t.test('It should generate the converter', async () => {
         const converter = Converter.create({
-            file: 'test/OPW 733 Tienduizend redenen.ppt',
+            file: 'test/example.ppt',
             output: 'output/',
         });
 
         const result = converter.convert();
 
-        assert.strictEqual(
-            result.file.path,
-            'test/OPW 733 Tienduizend redenen.ppt'
-        );
-        assert.strictEqual(
-            converter.pdf,
-            'output/OPW 733 Tienduizend redenen.pdf'
-        );
-        assert.strictEqual(
-            fileExists('output/OPW 733 Tienduizend redenen.pdf'),
-            true
-        );
+        assert.strictEqual(result.file.path, 'test/example.ppt');
+        assert.strictEqual(converter.pdf, 'output/example.pdf');
+        assert.strictEqual(fileExists('output/example.pdf'), true);
     });
 
-    await t.test('It should generate the converter', () => {
+    await t.test('It should generate the converter', async () => {
         const converter = Converter.create({
-            file: 'test/OPW 733 Tienduizend redenen.ppt',
+            file: 'test/example.ppt',
             output: 'output/',
             customConverter: 'libreoffice --headless --convert-to pdf --outdir',
         });
 
         const result = converter.convert();
 
-        assert.strictEqual(
-            result.file.path,
-            'test/OPW 733 Tienduizend redenen.ppt'
-        );
-        assert.strictEqual(
-            converter.pdf,
-            'output/OPW 733 Tienduizend redenen.pdf'
-        );
-        assert.strictEqual(
-            fileExists('output/OPW 733 Tienduizend redenen.pdf'),
-            true
-        );
+        assert.strictEqual(result.file.path, 'test/example.ppt');
+        assert.strictEqual(converter.pdf, 'output/example.pdf');
+        assert.strictEqual(fileExists('output/example.pdf'), true);
     });
 
     await t.test('It should return the default converter', () => {
         const converter = Converter.create({
-            file: 'test/OPW 733 Tienduizend redenen.ppt',
+            file: 'test/example.ppt',
             output: 'output/',
             customConverter: 'libreoffice --headless --convert-to pdf --outdir',
         });
@@ -75,7 +54,7 @@ test('PPT2PDF converter test', async (t) => {
 
     await t.test('It should return the custom converter', () => {
         const converter = Converter.create({
-            file: 'test/OPW 733 Tienduizend redenen.ppt',
+            file: 'test/example.ppt',
             output: 'output/',
             customConverter: 'example',
         });
@@ -98,7 +77,7 @@ test('PPT2PDF converter test', async (t) => {
     await t.test('It should throw an error if the output isnt a string', () => {
         try {
             Converter.create({
-                file: 'test/OPW 733 Tienduizend redenen.ppt',
+                file: 'test/example.ppt',
                 output: 42,
             });
         } catch (error) {
@@ -111,7 +90,7 @@ test('PPT2PDF converter test', async (t) => {
         () => {
             try {
                 Converter.create({
-                    file: 'test/OPW 733 Tienduizend redenen.ppt',
+                    file: 'test/example.ppt',
                     output: 'unknownfolder/',
                 });
             } catch (error) {
@@ -128,8 +107,8 @@ test('PPT2PDF converter test', async (t) => {
         () => {
             try {
                 Converter.create({
-                    file: 'test/OPW 733 Tienduizend redenen.ppt',
-                    output: 'test/OPW 733 Tienduizend redenen.ppt',
+                    file: 'test/example.ppt',
+                    output: 'test/example.ppt',
                 });
             } catch (error) {
                 assert.strictEqual(
@@ -145,7 +124,7 @@ test('PPT2PDF converter test', async (t) => {
         () => {
             try {
                 Converter.create({
-                    file: 'test/OPW 733 Tienduizend redenen.ppt',
+                    file: 'test/example.ppt',
                     output: 'output/',
                     customConverter: 42,
                 });
