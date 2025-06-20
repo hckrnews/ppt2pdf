@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/ppt2pdf",
-    "version": "0.3.6",
+    "version": "0.4.0",
     "description": "Convert ppt to pdf",
     "files": [
         "src/converter.js"
