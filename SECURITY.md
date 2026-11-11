@@ -2,18 +2,26 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Only the latest minor release receives security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.3.x   | :white_check_mark: |
-| < 0.3   | :x:                |
+| 0.5.x   | :white_check_mark: |
+| < 0.5   | :x:                |
+
+Versions up to and including 0.4.0 are vulnerable to OS command injection
+(CWE-78) via the file path, output directory, or `customConverter` option.
+Upgrade to 0.5.0 or later.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+Please do not report security vulnerabilities through public issues or pull
+requests.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Report them privately via GitHub:
+<https://github.com/hckrnews/ppt2pdf/security/advisories/new>
+
+Include a description, the affected version, and steps to reproduce. You can
+expect an initial response within a week. If the report is accepted, a fix is
+prepared in a private fork and a security advisory is published together with
+the patched release. If it is declined, you will receive an explanation.
