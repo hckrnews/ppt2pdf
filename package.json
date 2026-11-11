@@ -43,7 +43,7 @@
         "jscpd": "^4.0.0"
     },
     "dependencies": {
-        "@hckrnews/converter": "^0.6.0"
+        "@hckrnews/converter": "^0.7.0"
     },
     "engines": {
         "node": ">= 20"

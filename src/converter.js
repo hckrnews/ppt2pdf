@@ -36,38 +36,50 @@ class Ppt2PdfConverter extends Converter {
   }
 
   /**
-   * Get the converter for Linux.
+   * Get the converter binary for Linux.
    * @returns {string}
    */
   get converterForLinux () {
-    return 'libreoffice --headless --convert-to pdf --outdir'
+    return 'libreoffice'
   }
 
   /**
-   * Get the converter for Mac.
+   * Get the converter binary for Mac.
    * @returns {string}
    */
   get converterForMac () {
-    const sOfficeMac
-            = '/Applications/LibreOffice.app/Contents/MacOS/soffice'
-
-    return `${sOfficeMac} --headless --convert-to pdf --outdir`
+    return '/Applications/LibreOffice.app/Contents/MacOS/soffice'
   }
 
   /**
-   * Get the converter for Mac.
+   * Get the converter binary for Windows.
    * @returns {string}
    */
   get converterForWindows () {
-    return 'soffice.exe --headless --convert-to pdf:writer_pdf_Export --outdir'
+    return 'soffice.exe'
   }
 
   /**
-   * Get the exec path
+   * Get the LibreOffice convert-to filter.
    * @returns {string}
    */
-  get execPath () {
-    return `${this.converter} "${this.output}" "${this.oldFile.path}"`
+  get convertTo () {
+    return platform === 'win32' ? 'pdf:writer_pdf_Export' : 'pdf'
+  }
+
+  /**
+   * Get the arguments passed to the converter binary.
+   * @returns {string[]}
+   */
+  get args () {
+    return [
+      '--headless',
+      '--convert-to',
+      this.convertTo,
+      '--outdir',
+      path.resolve(this.output),
+      path.resolve(this.oldFile.path)
+    ]
   }
 
   /**
